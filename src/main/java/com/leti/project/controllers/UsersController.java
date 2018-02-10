@@ -8,6 +8,7 @@ import com.leti.project.services.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = Paths.USERS)
+@CrossOrigin(origins = "http://localhost:8000")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UsersController {
 
@@ -24,6 +26,7 @@ public class UsersController {
 
     @PreAuthorize("permitAll()")
     @GetMapping(Methods.ID_PATTERN)
+    @CrossOrigin(origins = "http://localhost:8000/users/1")
     public UserEntity get(@PathVariable final Long id) {
         return usersService.getUserById(id);
     }

@@ -16,7 +16,7 @@ public class UsersService {
     private final UsersMapper usersMapper;
 
     public UserEntity getUserById(final Long id) {
-        return usersMapper.getById(id);
+        return new UserEntity().setFirstName("SUKA");
     }
 
     public void create(CreateUserRequestArguments arguments) {
