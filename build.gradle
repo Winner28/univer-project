@@ -1,0 +1,139 @@
+/*
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:+'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:+'
+    }
+}
+
+group = 'com.epam.javalab'
+version = '1.0-SNAPSHOT'
+
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+    mavenLocal()
+}
+
+configurations {
+    compile.exclude module: 'spring-boot-starter-tomcat'
+    compile.exclude module: 'spring-boot-starter-logging'
+
+    testCompile.extendsFrom compileOnly
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-jetty:+'
+
+    */
+/* spring-boot *//*
+
+    compile 'org.springframework.boot:spring-boot-starter-web:+',
+            'org.springframework.boot:spring-boot-starter-jdbc:+',
+            'org.mybatis.spring.boot:mybatis-spring-boot-starter:+',
+            'org.springframework.boot:spring-boot-devtools:+'
+
+    */
+/* spring security *//*
+
+    compile 'org.springframework.security:spring-security-config:+'
+    compile 'org.springframework.security:spring-security-web:+'
+    compile 'org.springframework.security:spring-security-test:4.0.0.RELEASE'
+
+    */
+/* backend *//*
+
+    compile 'com.jolbox:bonecp:+',
+            'com.fasterxml.jackson.core:jackson-databind:+',
+            'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0',
+            'commons-fileupload:commons-fileupload:+',
+            'org.apache.poi:poi:3.16',
+            'org.apache.poi:poi-ooxml:3.16',
+            'org.apache.pdfbox:pdfbox:2.0.8'
+
+
+
+
+
+    compileOnly('org.projectlombok:lombok:+')
+
+    runtime 'com.h2database:h2:+',
+            'mysql:mysql-connector-java:6.0.5'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test:+',
+            'org.powermock:powermock-module-junit4:1.6.5',
+            'org.powermock:powermock-api-mockito:1.6.5'
+
+}
+*/
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compileOnly('org.projectlombok:lombok:+')
+
+    compile 'org.springframework.boot:spring-boot-starter-jetty:+'
+
+
+
+    compile 'org.springframework.boot:spring-boot-starter-jdbc:+',
+    'org.mybatis.spring.boot:mybatis-spring-boot-starter:+',
+    'org.springframework.boot:spring-boot-devtools:+'
+
+
+
+    compile 'org.springframework.security:spring-security-config:+'
+    compile 'org.springframework.security:spring-security-web:+'
+    compile 'org.springframework.security:spring-security-test:4.0.0.RELEASE'
+
+
+
+            compile 'com.jolbox:bonecp:+',
+    'com.fasterxml.jackson.core:jackson-databind:+',
+    'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0',
+    'commons-fileupload:commons-fileupload:+',
+    'org.apache.poi:poi:3.16',
+    'org.apache.poi:poi-ooxml:3.16',
+    'org.apache.pdfbox:pdfbox:2.0.8'
+
+    runtime 'com.h2database:h2:+',
+            'mysql:mysql-connector-java:6.0.5'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test:+',
+            'org.powermock:powermock-module-junit4:1.6.5',
+            'org.powermock:powermock-api-mockito:1.6.5'
+}
