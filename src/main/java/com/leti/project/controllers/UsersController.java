@@ -4,6 +4,7 @@ import com.leti.project.common.Methods;
 import com.leti.project.common.Paths;
 import com.leti.project.entities.UserEntity;
 import com.leti.project.requests.users.CreateUserRequestArguments;
+import com.leti.project.requests.users.UpdateUserRequestArguments;
 import com.leti.project.services.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,6 @@ public class UsersController {
 
     @PreAuthorize("permitAll()")
     @GetMapping(Methods.ID_PATTERN)
-    @CrossOrigin(origins = "http://localhost:8000/users/1")
     public UserEntity get(@PathVariable final Long id) {
         return usersService.getUserById(id);
     }
@@ -42,4 +42,10 @@ public class UsersController {
     public String home() {
         return "Hello!";
     }
+
+    public UserEntity update(@PathVariable final Long id,
+                             @RequestBody final UpdateUserRequestArguments arguments) {
+        return null;
+    }
+
 }

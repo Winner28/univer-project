@@ -5,9 +5,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class CreateUserRequestArguments {
-    private String email;
-    private String passwordHash;
-    private String fistName;
+public class UpdateUserRequestArguments {
+    private String firstName;
     private String lastName;
+    private String passwordHash;
+    private String email;
+
 }

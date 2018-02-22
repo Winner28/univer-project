@@ -1,0 +1,10 @@
+.gitignore
+.gradle
+build
+gradlew
+gradle
+.idea
+out
+log
+gradlew.bat
+settings.gradle
