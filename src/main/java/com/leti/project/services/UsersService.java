@@ -5,16 +5,18 @@ import com.leti.project.entities.UserEntity;
 import com.leti.project.exceptions.ProceedEntityException;
 import com.leti.project.requests.users.CreateUserRequestArguments;
 import com.leti.project.requests.users.UpdateUserRequestArguments;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UsersService {
 
-    private final UsersMapper usersMapper;
+    private UsersMapper usersMapper;
+
 
     public UserEntity getUserById(final Long id) {
         return usersMapper.getById(id);

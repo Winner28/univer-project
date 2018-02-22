@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UsersController {
 
-    private final UsersService usersService;
+    private UsersService usersService;
 
     @PreAuthorize("permitAll()")
     @GetMapping(Methods.ID_PATTERN)
