@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Component;
 
 @Mapper
@@ -18,5 +19,11 @@ public interface UsersMapper {
             + "VALUES (#{email}, #{passwordHash}, #{firstName}, #{lastName}")
     @Options(useGeneratedKeys = true, keyColumn = "ID", keyProperty = "id")
     Long create(final UserEntity userEntity);
+
+    @Update("UPDATE users SET email = #{email}, passwordHash = #{passwordHash},"
+            + "firstName = #{firstName}, "
+            + "lastName = #{lastName},"
+            + "WHERE id = #{id}")
+    Boolean updateByID(final UserEntity userEntity);
 
 }
