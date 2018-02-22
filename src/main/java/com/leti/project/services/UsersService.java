@@ -2,7 +2,7 @@ package com.leti.project.services;
 
 import com.leti.project.dao.UsersMapper;
 import com.leti.project.entities.UserEntity;
-import com.leti.project.exceptions.CreatingEntityException;
+import com.leti.project.exceptions.ProceedEntityException;
 import com.leti.project.requests.users.CreateUserRequestArguments;
 import com.leti.project.requests.users.UpdateUserRequestArguments;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class UsersService {
                 .setEmail(arguments.getEmail())
                 .setPasswordHash(arguments.getPasswordHash());
         if (usersMapper.create(userEntity) < 0) {
-            throw new CreatingEntityException("Failed to create user");
+            throw new ProceedEntityException("Failed to create user");
         }
     }
 
@@ -39,6 +39,15 @@ public class UsersService {
         if (arguments.getLastName() != null) {
             userEntity.setLastName(arguments.getLastName());
         }
-        return null;
+        if (arguments.getEmail() != null) {
+            userEntity.setEmail(arguments.getEmail());
+        }
+        if (arguments.getPasswordHash() != null) {
+            userEntity.setPasswordHash(arguments.getPasswordHash());
+        }
+        if (!usersMapper.updateByID(userEntity)) {
+            throw new ProceedEntityException("Failed to update user");
+        }
+        return userEntity;
     }
 }
