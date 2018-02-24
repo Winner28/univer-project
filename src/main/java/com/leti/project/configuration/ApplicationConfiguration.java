@@ -24,9 +24,9 @@ import java.util.Properties;
 
 @Configuration
 @EnableAutoConfiguration(exclude = MultipartAutoConfiguration.class)
-@EnableJpaRepositories(basePackageClasses = Application.class)
-@EnableTransactionManagement
-public class ApplicationConfiguration implements TransactionManagementConfigurer {
+@PropertySource("classpath:/application.properties")
+@EnableJpaRepositories
+public class ApplicationConfiguration{
 
     @Value("${spring.datasource.url}")
     private String dataBaseUrl;
@@ -40,10 +40,10 @@ public class ApplicationConfiguration implements TransactionManagementConfigurer
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
-    @Value("${hibernate.dialect}")
+    @Value("${spring.jpa.properties.hibernate.dialect}")
     private String dialect;
 
-    @Value("${hibernate.hbm2ddl.auto}")
+    @Value("${spring.jpa.hibernate.ddl-auto}")
     private String hbm2ddlAuto;
 
     @Bean
@@ -62,7 +62,7 @@ public class ApplicationConfiguration implements TransactionManagementConfigurer
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
                 new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.leti");
+        entityManagerFactoryBean.setPackagesToScan("com.leti.project");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
@@ -72,10 +72,4 @@ public class ApplicationConfiguration implements TransactionManagementConfigurer
 
         return entityManagerFactoryBean;
     }
-
-    @Bean
-    public PlatformTransactionManager annotationDrivenTransactionManager() {
-        return new JpaTransactionManager();
-    }
-
 }

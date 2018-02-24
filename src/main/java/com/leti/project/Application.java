@@ -12,5 +12,5 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class Application extends SpringBootServletInitializer {
     public static void main(String[] args) {
-        SpringApplication.run(new Class[] {Application.class, ApplicationConfiguration.class}, args); }
+        SpringApplication.run(Application.class, args); }
 }

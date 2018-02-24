@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = Paths.USERS)
-@CrossOrigin(origins = "http://localhost:8000")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UsersController {
 
@@ -28,28 +27,8 @@ public class UsersController {
 
     @PreAuthorize("permitAll()")
     @GetMapping(Methods.ID_PATTERN)
-    public UserEntity get(@PathVariable final Long id) {
-        return usersService.getUserById(id);
-    }
-
-    @PostMapping
-    @PreAuthorize("permitAll()")
-    public void create(@RequestBody final CreateUserRequestArguments arguments) {
-        usersService.create(arguments);
-    }
-
-    @GetMapping
-    @PreAuthorize("permitAll()")
-    public String home() {
-        return "Hello!";
-    }
-
-    @PutMapping
-    @PreAuthorize("permitAll()")
-    public UserEntity update(@PathVariable final Long id,
-                             @RequestBody final UpdateUserRequestArguments arguments) {
-        arguments.setID(id);
-        return usersService.update(arguments);
+    public UserEntity getUserByID(@PathVariable final Long ID) {
+        return usersService.getUserById(ID);
     }
 
 }
