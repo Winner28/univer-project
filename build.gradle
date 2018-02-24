@@ -3,57 +3,45 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:+'
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
+group = 'com.epam.javalab'
+version = '1.0-SNAPSHOT'
 
-jar {
-    baseName = 'gs-spring-boot'
-    version =  '0.1.0'
-}
+apply plugin: 'java'
+
+sourceCompatibility = 9
 
 repositories {
     mavenCentral()
+    jcenter()
+    mavenLocal()
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+configurations {
+    testCompile.extendsFrom compileOnly
+    compile.exclude module: 'spring-boot-starter-tomcat'
+    compile.exclude module: 'spring-boot-starter-logging'
+}
+
+// turns sout`ing on in tests:
+test.testLogging.showStandardStreams = true
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compileOnly('org.projectlombok:lombok:+')
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.4.RELEASE',
+            'org.springframework.boot:spring-boot-starter-jetty:1.5.4.RELEASE',
+            'org.springframework.boot:spring-boot-devtools:+'
 
-    compile 'org.springframework.boot:spring-boot-starter-jetty:+'
+    compile 'org.springframework:spring-webmvc:+'
 
-
-
-    compile 'org.springframework.boot:spring-boot-starter-jdbc:+',
-    'org.mybatis.spring.boot:mybatis-spring-boot-starter:+',
-    'org.springframework.boot:spring-boot-devtools:+'
-
-
-    compile 'org.apache.logging.log4j:log4j-jul:+',
-            'org.apache.logging.log4j:log4j-core:+',
-            // Spring Core (IoC)
-            'org.springframework:spring-context:+',
-
-            // AOP
-            'org.aspectj:aspectjrt:+',
-            'org.aspectj:aspectjweaver:+',
-            'aopalliance:aopalliance:+',
-            // ORM
-            'org.springframework:spring-orm:+',
-            'org.hibernate:hibernate-spatial:+',
-            'org.hibernate:hibernate-validator:+',
-            'org.hibernate:hibernate-java8:+',
-            'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:+'
-
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-web:+',
+            'org.springframework.boot:spring-boot-starter-aop:+',
+            'org.springframework.boot:spring-boot-starter-jdbc:+',
+            'org.springframework.boot:spring-boot-starter-log4j2:+'
 
     compile 'org.springframework.security:spring-security-config:+'
     compile 'org.springframework.security:spring-security-web:+'
@@ -61,11 +49,48 @@ dependencies {
 
 
 
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:'
+    compile 'org.springframework.data:spring-data-commons:+'
+    compile 'org.springframework.data:spring-data-jpa:+'
+
+    compile 'org.springframework.security:spring-security-config:+'
+    compile 'org.springframework.security:spring-security-web:+'
+    compile 'org.springframework.security:spring-security-test:4.0.0.RELEASE'
+
+
+    compile 'org.springframework:spring-context:+',
+
+            // AOP
+            'org.aspectj:aspectjrt:+',
+            'org.aspectj:aspectjweaver:+',
+            'aopalliance:aopalliance:+',
+
+            // JDBC
+            'org.springframework:spring-jdbc:+',
+
+            // ORM
+            'org.springframework:spring-orm:+',
+            'org.hibernate:hibernate-spatial:+',
+            'org.hibernate:hibernate-validator:+',
+            'org.hibernate:hibernate-java8:+',
+
+            'org.apache.logging.log4j:log4j-slf4j-impl:+',
+            'javax.xml.bind:jaxb-api:+',
+            'io.vavr:vavr:+'
+
+    compileOnly('org.projectlombok:lombok:+')
 
     runtime 'com.h2database:h2:+',
             'mysql:mysql-connector-java:6.0.5'
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test:+',
+    testCompile 'org.springframework.boot:spring-boot-starter-test',
             'org.powermock:powermock-module-junit4:1.6.5',
             'org.powermock:powermock-api-mockito:1.6.5'
+
+    testCompile 'org.junit.jupiter:junit-jupiter-api:+',
+            'org.junit.jupiter:junit-jupiter-engine:+',
+            'org.junit.jupiter:junit-jupiter-params:5.0.2',
+            'org.hamcrest:java-hamcrest:+',
+            'org.springframework:spring-test:+',
+            'org.mockito:mockito-core:+'
 }
