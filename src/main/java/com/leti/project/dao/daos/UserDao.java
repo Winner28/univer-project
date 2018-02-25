@@ -7,5 +7,4 @@ import java.util.List;
 public interface UserDao {
     UserEntity getUserByID(final Long ID);
     List<UserEntity> getAllUsers();
-    void sayHi();
 }
