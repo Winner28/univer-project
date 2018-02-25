@@ -1,7 +1,7 @@
 SET MODE POSTGRESQL;
 
 CREATE TABLE IF NOT EXISTS users (
-  ID int auto_increment
+  ID INT auto_increment
 		primary key,
   email varchar(100) not null,
   firstName varchar(100) not null,
