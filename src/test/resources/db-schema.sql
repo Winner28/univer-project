@@ -1,5 +1,3 @@
-SET MODE POSTGRESQL;
-
 CREATE TABLE IF NOT EXISTS users (
   ID INT auto_increment
 		primary key,

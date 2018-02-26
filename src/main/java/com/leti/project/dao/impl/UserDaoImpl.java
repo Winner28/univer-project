@@ -1,5 +1,6 @@
 package com.leti.project.dao.impl;
 
+import com.leti.project.dao.AbstractJpaDao;
 import com.leti.project.dao.daos.UserDao;
 import com.leti.project.entities.UserEntity;
 import lombok.AllArgsConstructor;
@@ -12,25 +13,29 @@ import java.util.List;
 
 
 @Repository
-@AllArgsConstructor(onConstructor = @__(@Autowired))
-public class UserDaoImpl /*implements UserDao*/ {
+public class UserDaoImpl extends AbstractJpaDao implements UserDao {
 
-    private EntityManagerFactory entityManager;
-
-    /*@Override
+    @Override
     public UserEntity getUserByID(final Long ID) {
-        return entityManager.createQuery(
-                "select u from UserEntity u where u.id like :id",
+        return mapEntityManager(entityManager -> entityManager.createQuery(
+                "select u from UserEntity u where u.id = :id",
                 UserEntity.class)
                 .setParameter("id", ID)
-                .getSingleResult();
+                .getSingleResult());
     }
 
     @Override
     public List<UserEntity> getAllUsers() {
-        return entityManager.createQuery(
+        return mapEntityManager(entityManager -> entityManager.createQuery(
                 "select u from UserEntity u", UserEntity.class)
-                .getResultList();
-    }*/
+                .getResultList());
+    }
+
+    @Override
+    public void addUser(UserEntity userEntity) {
+        withEntityManager(entityManager -> {
+            entityManager.merge(userEntity);
+        });
+    }
 
 }
