@@ -1,3 +1,3 @@
-INSERT INTO users (ID, email, firstName, lastName, passwordHash)
-  VALUES (1, '@mail.ru', 'Vlad', 'Dracula', '1234');
+INSERT INTO users (ID, email,  passwordHash, firstName, lastName)
+  VALUES (1, '@mail.ru', '1234', 'Vlad', 'Dracula');
 

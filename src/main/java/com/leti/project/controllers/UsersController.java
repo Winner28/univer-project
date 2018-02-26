@@ -5,7 +5,7 @@ import com.leti.project.common.Paths;
 import com.leti.project.entities.UserEntity;
 import com.leti.project.requests.users.CreateUserRequestArguments;
 import com.leti.project.requests.users.UpdateUserRequestArguments;
-import com.leti.project.services.UsersService;
+import com.leti.project.services.UsersService.UsersService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

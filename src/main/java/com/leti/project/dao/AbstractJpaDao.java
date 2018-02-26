@@ -2,7 +2,6 @@ package com.leti.project.dao;
 
 
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,8 +12,7 @@ import java.util.function.Function;
 
 public abstract class AbstractJpaDao {
 
-    @Autowired
-    @Setter
+    @Setter(onMethod = @__(@PersistenceUnit))
     private EntityManagerFactory emf;
 
     protected <T> T mapEntityManager(Function<EntityManager, T> entityManagerMapper) {
