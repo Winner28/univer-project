@@ -18,17 +18,17 @@
         <jdbc:script location="initDB.sql"/>
     </jdbc:embedded-database>
 
-    <!--<bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+    <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:persistenceUnitName="springframework.lab.orm.jpa"
           p:persistenceProviderClass="org.hibernate.jpa.HibernatePersistenceProvider"
           p:loadTimeWeaver-ref="weaver"/>
 
-    <bean id="weaver" class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>-->
+    <bean id="weaver" class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver"/>
 
 
     <bean id="userEntity" class="com.leti.project.entities.UserEntity">
-        <property name="firstName" value="BagdeyBest"/>
+        <property name="firstName" value="First"/>
     </bean>
 
 </beans>

@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 
 @Repository
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl /*implements UserDao*/ {
 
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManager;
 
-    @Override
+    /*@Override
     public UserEntity getUserByID(final Long ID) {
         return entityManager.createQuery(
                 "select u from UserEntity u where u.id like :id",
@@ -30,6 +31,6 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery(
                 "select u from UserEntity u", UserEntity.class)
                 .getResultList();
-    }
+    }*/
 
 }

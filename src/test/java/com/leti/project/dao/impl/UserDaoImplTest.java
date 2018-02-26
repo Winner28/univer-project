@@ -16,7 +16,7 @@ class UserDaoImplTest {
     @Autowired
     private UserEntity userEntity;
 
-private static final Long ID = 1L;
+    private static final Long ID = 1L;
     private static final String email = "@mail.ru";
     private static final String firstName = "Vlad";
     private static final String lastName = "Dracula";
