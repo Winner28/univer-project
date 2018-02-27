@@ -26,19 +26,17 @@ class UserDaoImplTest {
 
     @Test
     void testThatWeCanGetExpectedUserByID() {
-       // System.out.println(userDaoImpl.getAllUsers() + "AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-     /*   assertNotNull(userDaoImpl);
+        assertNotNull(userDaoImpl);
+        userDaoImpl.create(getUser());
         final UserEntity userEntity = userDaoImpl.getUserByID(ID);
         assertNotNull(userEntity);
-        assertEquals(userEntity, getUser());*/
+        assertEquals(userEntity, getUser());
     }
 
     @Test
     void testThatWeCanAddUser() {
-        userDaoImpl.addUser(getUser());
-        final UserEntity userEntity = userDaoImpl.getUserByID(ID);
-        assertNotNull(userEntity);
-        assertEquals(userEntity, getUser());
+        userDaoImpl.create(getUser());
+
     }
 
     private UserEntity getUser() {

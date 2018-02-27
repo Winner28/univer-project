@@ -18,9 +18,9 @@ public class UserDaoImpl extends AbstractJpaDao implements UserDao {
     @Override
     public UserEntity getUserByID(final Long ID) {
         return mapEntityManager(entityManager -> entityManager.createQuery(
-                "select u from UserEntity u where u.id = :id",
+                "select u from UserEntity u where u.id = :ID",
                 UserEntity.class)
-                .setParameter("id", ID)
+                .setParameter("ID", ID)
                 .getSingleResult());
     }
 
@@ -32,9 +32,11 @@ public class UserDaoImpl extends AbstractJpaDao implements UserDao {
     }
 
     @Override
-    public void addUser(UserEntity userEntity) {
-        withEntityManager(entityManager -> {
-            entityManager.merge(userEntity);
+    public UserEntity create(UserEntity userEntity) {
+        return mapEntityManagerInTransaction(entityManager ->  {
+            final UserEntity usr = entityManager.merge(userEntity);
+            entityManager.close();
+            return usr;
         });
     }
 

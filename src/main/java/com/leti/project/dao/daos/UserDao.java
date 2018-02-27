@@ -7,5 +7,5 @@ import java.util.List;
 public interface UserDao {
     UserEntity getUserByID(final Long ID);
     List<UserEntity> getAllUsers();
-    void addUser(final UserEntity userEntity);
+    UserEntity create(final UserEntity userEntity);
 }
